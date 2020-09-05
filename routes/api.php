@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProvinceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('auth/login', [LoginController::class, 'login'])->name('auth.login');
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('auth/login', [LoginController::class, 'login'])->name('auth');
+Route::middleware(['auth:api'])
+    ->group(function () {
+        Route::get('provinces', [ProvinceController::class, 'index']);
+    });

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 /**
  * @method static Builder|User byEmail($email)
@@ -13,8 +17,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string api_token
  * @see User::scopeByEmail()
  */
-class User extends Model
+class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    use Authenticatable;
+    use Authorizable;
+
     protected $primaryKey = 'user_id';
 
     protected $fillable = [

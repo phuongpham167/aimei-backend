@@ -24,7 +24,7 @@ class thirdPartyAPI
 
     protected function getRequest($uri, $data = [])
     {
-        $response = $this->guzzle()->get($uri, ['json' => $data]);
+        $response = $this->guzzle()->get($uri, $data);
 
         return json_decode($response->getBody()->getContents(), $asArray = true);
     }
@@ -39,5 +39,33 @@ class thirdPartyAPI
     public function getProvinces()
     {
         return $this->getRequest('/get_provinces', []);
+    }
+
+    public function getProvincePopulation($provinceId)
+    {
+        return $this->getRequest('/province_population', [
+            'query' => [
+                'province_id' => $provinceId
+            ]
+        ]);
+    }
+
+    public function getProvinceDistricts($provinceId)
+    {
+        return $this->getRequest('/get_districts', [
+            'query' => [
+                'province_id' => $provinceId
+            ]
+        ]);
+    }
+
+    public function getPopulationInDistrict($provinceId, $districtId)
+    {
+        return $this->getRequest('/district_population', [
+            'query' => [
+                'province_id' => $provinceId,
+                'district_id' => $districtId
+            ]
+        ]);
     }
 }

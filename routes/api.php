@@ -18,4 +18,6 @@ Route::post('auth/login', [LoginController::class, 'login'])->name('auth');
 Route::middleware(['auth:api'])
     ->group(function () {
         Route::get('provinces', [ProvinceController::class, 'index']);
+        Route::get('provinces/{provinceId}', [ProvinceController::class, 'show']);
+        Route::get('provinces/{provinceId}/districts', [ProvinceController::class, 'showDistricts']);
     });

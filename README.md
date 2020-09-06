@@ -20,7 +20,10 @@ composer install
 ## Start service
 coppy .env file from .env.example and put your config on this file.
 
-
+migrate database
+```.env
+php artisan migrate
+```
 Then run
 ```
 php artisan serve

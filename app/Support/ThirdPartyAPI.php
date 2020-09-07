@@ -5,7 +5,7 @@ namespace App\Support;
 use App\Http\Resources\ProvinceResource;
 use GuzzleHttp\Client;
 
-class thirdPartyAPI
+class ThirdPartyAPI
 {
     private $baseUri;
 

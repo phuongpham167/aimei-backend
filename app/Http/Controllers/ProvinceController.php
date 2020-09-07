@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\DistrictCollection;
 use App\Http\Resources\ProvinceResource;
-use App\Support\Facades\thirdPartyAPIFacades;
+use App\Support\Facades\ThirdPartyAPIFacades;
 use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
 {
     public function index()
     {
-        $provinces = thirdPartyAPIFacades::getProvinces();
+        $provinces = ThirdPartyAPIFacades::getProvinces();
 
         return ProvinceResource::collection($provinces);
     }
 
     public function show(Request $request, $provinceId)
     {
-        $populations = thirdPartyAPIFacades::getProvincePopulation($provinceId);
+        $populations = ThirdPartyAPIFacades::getProvincePopulation($provinceId);
 
-        $districts = thirdPartyAPIFacades::getProvinceDistricts($provinceId);
+        $districts = ThirdPartyAPIFacades::getProvinceDistricts($provinceId);
 
         return [
             'province_id' => $provinceId,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Support\Facades\thirdPartyAPIFacades;
+use App\Support\Facades\ThirdPartyAPIFacades;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DistrictCollection extends ResourceCollection
@@ -22,7 +22,7 @@ class DistrictCollection extends ResourceCollection
 
         return $districts
             ->map(function ($district) {
-                $populationInDistrict = thirdPartyAPIFacades::getPopulationInDistrict($this->province ,$district['id']);
+                $populationInDistrict = ThirdPartyAPIFacades::getPopulationInDistrict($this->province ,$district['id']);
 
                 return [
                     'distric_id' => $district['id'],
